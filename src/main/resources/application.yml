@@ -1,0 +1,12 @@
+server:
+  port: 8888
+
+app:
+  plugin:
+    city:
+      nominatim:
+        base-url: "https://nominatim.openstreetmap.org/search"
+    subway:
+      overpass:
+        base-url: "https://www.overpass-api.de/api/interpreter"
+
