@@ -1,4 +1,4 @@
-package com.example.service_subway.plugins.region.model;
+package com.example.service_subway.plugins.nominatim.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

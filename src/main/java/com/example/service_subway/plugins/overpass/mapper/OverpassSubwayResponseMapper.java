@@ -1,7 +1,7 @@
-package com.example.service_subway.plugins.subway.mapper;
+package com.example.service_subway.plugins.overpass.mapper;
 
 import com.example.service_subway.core.model.Coordinate;
-import com.example.service_subway.plugins.subway.model.OverpassSubwayResponse;
+import com.example.service_subway.plugins.overpass.model.OverpassSubwayResponse;
 import com.example.service_subway.core.model.Subway;
 import com.example.service_subway.core.mapper.Mapper;
 import org.springframework.stereotype.Component;

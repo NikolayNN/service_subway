@@ -1,11 +1,11 @@
-package com.example.service_subway.plugins.subway;
+package com.example.service_subway.plugins.overpass;
 
 import com.example.service_subway.core.model.Region;
 import com.example.service_subway.core.model.Coordinate;
 import com.example.service_subway.core.model.Subway;
 import com.example.service_subway.core.plugins.SubwayService;
-import com.example.service_subway.plugins.subway.mapper.OverpassSubwayResponseMapper;
-import com.example.service_subway.plugins.subway.model.OverpassSubwayResponse;
+import com.example.service_subway.plugins.overpass.mapper.OverpassSubwayResponseMapper;
+import com.example.service_subway.plugins.overpass.model.OverpassSubwayResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;

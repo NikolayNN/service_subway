@@ -1,8 +1,8 @@
-package com.example.service_subway.plugins.region.mapper;
+package com.example.service_subway.plugins.nominatim.mapper;
 
 import com.example.service_subway.core.model.Region;
 import com.example.service_subway.core.model.Coordinate;
-import com.example.service_subway.plugins.region.model.NominatimRegionResponse;
+import com.example.service_subway.plugins.nominatim.model.NominatimRegionResponse;
 import com.example.service_subway.core.mapper.Mapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
