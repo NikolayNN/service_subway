@@ -37,12 +37,11 @@ public class OverpassSubwayService implements SubwayService {
     }
 
     private URI buildUri(Region region) {
-        String query = String.format("[out:json];node[station=subway](%s);out;", boundBoxString(region));
-        String uri = BASE_URL + "?data=" + query;
-        return URI.create(uri);
+        String query = String.format("data=[out:json];node[station=subway](%s);out;", toString(region));
+        return URI.create(BASE_URL + "?" + query);
     }
 
-    private String boundBoxString(Region region) {
+    private String toString(Region region) {
         return toString(region.bounds().southWest()) + "," + toString(region.bounds().northEast());
     }
 
