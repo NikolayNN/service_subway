@@ -1,9 +1,9 @@
-package com.example.service_subway.plugins.city;
+package com.example.service_subway.plugins.region;
 
-import com.example.service_subway.core.model.City;
-import com.example.service_subway.core.plugins.CityService;
-import com.example.service_subway.plugins.city.mapper.NominatimCityResponseMapper;
-import com.example.service_subway.plugins.city.model.NominatimCityResponse;
+import com.example.service_subway.core.model.Region;
+import com.example.service_subway.core.plugins.RegionService;
+import com.example.service_subway.plugins.region.mapper.NominatimRegionResponseMapper;
+import com.example.service_subway.plugins.region.model.NominatimRegionResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -16,28 +16,28 @@ import java.util.Optional;
 import static org.apache.commons.lang3.StringUtils.isEmpty;
 
 @Service
-public class NominatimCityService implements CityService {
+public class NominatimRegionService implements RegionService {
 
     private final RestTemplate restTemplate;
-    private final NominatimCityResponseMapper mapper;
+    private final NominatimRegionResponseMapper mapper;
 
     private final String BASE_URL;
 
-    public NominatimCityService(RestTemplate restTemplate,
-                                NominatimCityResponseMapper mapper,
-                                @Value("${app.plugin.city.nominatim.base-url}") String baseUrl) {
+    public NominatimRegionService(RestTemplate restTemplate,
+                                  NominatimRegionResponseMapper mapper,
+                                  @Value("${app.plugin.city.nominatim.base-url}") String baseUrl) {
         this.restTemplate = restTemplate;
         this.mapper = mapper;
         BASE_URL = baseUrl;
     }
 
     @Override
-    public Optional<City> getByName(String name) {
+    public Optional<Region> getByName(String name) {
         if (isEmpty(name)) {
             return Optional.empty();
         }
         URI uri = buildUri(name);
-        var response = restTemplate.getForObject(uri, NominatimCityResponse[].class);
+        var response = restTemplate.getForObject(uri, NominatimRegionResponse[].class);
         return buildCity(response);
     }
 
@@ -52,7 +52,7 @@ public class NominatimCityService implements CityService {
                 .toUri();
     }
 
-    private Optional<City> buildCity(NominatimCityResponse[] response) {
+    private Optional<Region> buildCity(NominatimRegionResponse[] response) {
         return Arrays.stream(response)
                 .findFirst()
                 .map(mapper::map);

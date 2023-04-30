@@ -1,8 +1,8 @@
-package com.example.service_subway.plugins.city.model;
+package com.example.service_subway.plugins.region.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public record NominatimCityResponse(
+public record NominatimRegionResponse(
         @JsonProperty("display_name") String displayName,
         float[] boundingbox) {
 }

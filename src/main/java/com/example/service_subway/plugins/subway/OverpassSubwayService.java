@@ -1,6 +1,6 @@
 package com.example.service_subway.plugins.subway;
 
-import com.example.service_subway.core.model.City;
+import com.example.service_subway.core.model.Region;
 import com.example.service_subway.core.model.Coordinate;
 import com.example.service_subway.core.model.Subway;
 import com.example.service_subway.core.plugins.SubwayService;
@@ -30,20 +30,20 @@ public class OverpassSubwayService implements SubwayService {
     }
 
     @Override
-    public List<Subway> listByCity(City city) {
-        URI uri = buildUri(city);
+    public List<Subway> listByCity(Region region) {
+        URI uri = buildUri(region);
         var response = restTemplate.getForObject(uri, OverpassSubwayResponse.class);
         return mapper.map(response);
     }
 
-    private URI buildUri(City city) {
-        String query = String.format("[out:json];node[station=subway](%s);out;", boundBoxString(city));
+    private URI buildUri(Region region) {
+        String query = String.format("[out:json];node[station=subway](%s);out;", boundBoxString(region));
         String uri = BASE_URL + "?data=" + query;
         return URI.create(uri);
     }
 
-    private String boundBoxString(City city) {
-        return toString(city.bounds().southWest()) + "," + toString(city.bounds().northEast());
+    private String boundBoxString(Region region) {
+        return toString(region.bounds().southWest()) + "," + toString(region.bounds().northEast());
     }
 
     private String toString(Coordinate coordinate) {
