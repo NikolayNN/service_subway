@@ -1,9 +1,9 @@
-package com.example.service_subway.plugins.nominatim;
+package com.example.service_subway.plugins.region;
 
 import com.example.service_subway.core.model.Region;
 import com.example.service_subway.core.plugins.RegionService;
-import com.example.service_subway.plugins.nominatim.mapper.NominatimRegionResponseMapper;
-import com.example.service_subway.plugins.nominatim.model.NominatimRegionResponse;
+import com.example.service_subway.plugins.region.mapper.NominatimRegionResponseMapper;
+import com.example.service_subway.plugins.region.model.NominatimRegionResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;

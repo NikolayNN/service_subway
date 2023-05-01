@@ -3,10 +3,13 @@ server:
 
 app:
   plugin:
-    city:
+    region:
       nominatim:
         base-url: "https://nominatim.openstreetmap.org/search"
     subway:
       overpass:
         base-url: "https://www.overpass-api.de/api/interpreter"
+    location:
+      internal:
+        base-url: "internal-resource-url"
 

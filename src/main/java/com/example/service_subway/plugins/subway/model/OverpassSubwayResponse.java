@@ -1,4 +1,4 @@
-package com.example.service_subway.plugins.overpass.model;
+package com.example.service_subway.plugins.subway.model;
 
 
 public record OverpassSubwayResponse(Element[] elements) {
