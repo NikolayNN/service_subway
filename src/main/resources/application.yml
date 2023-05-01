@@ -1,6 +1,12 @@
 server:
   port: 8888
 
+spring:
+  cache:
+    cache-names: subways
+    caffeine:
+      spec: maximumSize=100,expireAfterAccess=43200s
+
 app:
   plugin:
     region:
