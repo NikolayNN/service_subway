@@ -1,12 +1,7 @@
 package com.example.service_subway.core;
 
-import com.example.service_subway.core.model.Region;
-import com.example.service_subway.core.model.Subway;
 import com.example.service_subway.core.plugins.RegionService;
 import com.example.service_subway.core.plugins.SubwayService;
-import com.example.service_subway.factory.RegionFactory;
-import com.example.service_subway.factory.RegionNameFactory;
-import com.example.service_subway.factory.SubwayFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -19,7 +14,7 @@ import java.util.Optional;
 import static com.example.service_subway.factory.RegionFactory.region;
 import static com.example.service_subway.factory.RegionNameFactory.regionName;
 import static com.example.service_subway.factory.SubwayFactory.subways;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)

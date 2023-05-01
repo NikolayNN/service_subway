@@ -2,8 +2,6 @@ package com.example.service_subway.factory;
 
 import com.example.service_subway.core.model.Coordinate;
 import com.example.service_subway.core.model.Subway;
-import com.example.service_subway.plugins.subway.model.OverpassSubwayResponse;
-import org.checkerframework.checker.units.qual.C;
 
 import java.util.List;
 

@@ -2,11 +2,7 @@ package com.example.service_subway.plugins.region.mapper;
 
 import com.example.service_subway.core.model.Coordinate;
 import com.example.service_subway.core.model.Region;
-import com.example.service_subway.core.model.Region.BoundingBox;
-import com.example.service_subway.factory.NominatimRegionResponseFactory;
 import com.example.service_subway.plugins.region.mapper.NominatimRegionResponseMapper.NominatimBoundingBoxMapper;
-import com.example.service_subway.plugins.region.model.NominatimRegionResponse;
-import org.checkerframework.checker.units.qual.N;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -17,7 +13,7 @@ import static com.example.service_subway.factory.BoundingBoxArrayFactory.boundin
 import static com.example.service_subway.factory.BoundingBoxFactory.boundingBox;
 import static com.example.service_subway.factory.NominatimRegionResponseFactory.nominatimRegionResponse;
 import static com.example.service_subway.factory.RegionFactory.region;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)

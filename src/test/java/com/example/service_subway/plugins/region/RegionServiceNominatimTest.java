@@ -1,11 +1,6 @@
 package com.example.service_subway.plugins.region;
 
-import com.example.service_subway.factory.NominatimRegionResponseFactory;
-import com.example.service_subway.factory.RegionFactory;
-import com.example.service_subway.factory.RegionNameFactory;
-import com.example.service_subway.plugins.location.LocationServiceInternal;
 import com.example.service_subway.plugins.region.mapper.NominatimRegionResponseMapper;
-import com.example.service_subway.plugins.region.model.NominatimRegionResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,12 +13,13 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 
+import static com.example.service_subway.factory.NominatimRegionResponseFactory.nominatimRegionResponse;
 import static com.example.service_subway.factory.NominatimRegionResponseFactory.nominatimRegionResponseArray;
 import static com.example.service_subway.factory.RegionFactory.region;
 import static com.example.service_subway.factory.RegionNameFactory.regionName;
-import static com.example.service_subway.factory.NominatimRegionResponseFactory.nominatimRegionResponse;
 import static java.lang.String.format;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 

@@ -1,6 +1,5 @@
 package com.example.service_subway.core;
 
-import com.example.service_subway.core.model.Region;
 import com.example.service_subway.core.model.Subway;
 import com.example.service_subway.core.plugins.RegionService;
 import com.example.service_subway.core.plugins.SubwayService;
