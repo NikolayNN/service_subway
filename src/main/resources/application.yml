@@ -2,6 +2,7 @@ server:
   port: 8888
 
 app:
+  search-radius-meters: 1000
   plugin:
     region:
       nominatim:
