@@ -25,7 +25,7 @@ public class RegionServiceNominatim implements RegionService {
 
     public RegionServiceNominatim(RestTemplate restTemplate,
                                   NominatimRegionResponseMapper mapper,
-                                  @Value("${app.plugin.city.nominatim.base-url}") String baseUrl) {
+                                  @Value("${app.plugin.region.nominatim.base-url}") String baseUrl) {
         this.restTemplate = restTemplate;
         this.mapper = mapper;
         BASE_URL = baseUrl;
