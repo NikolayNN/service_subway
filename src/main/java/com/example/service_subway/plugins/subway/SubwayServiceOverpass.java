@@ -32,8 +32,13 @@ public class SubwayServiceOverpass implements SubwayService {
     @Override
     public List<Subway> listByCity(Region region) {
         URI uri = buildUri(region);
-        var response = restTemplate.getForObject(uri, OverpassSubwayResponse.class);
-        return mapper.map(response);
+        try {
+            var response = restTemplate.getForObject(uri, OverpassSubwayResponse.class);
+            return mapper.map(response);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return List.of();
+        }
     }
 
     private URI buildUri(Region region) {
