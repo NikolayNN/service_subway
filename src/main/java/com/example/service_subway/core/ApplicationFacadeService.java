@@ -1,10 +1,14 @@
 package com.example.service_subway.core;
 
+import com.example.service_subway.core.exception.LocationNotFoundException;
+import com.example.service_subway.core.exception.NearestSubwayNotFoundException;
+import com.example.service_subway.core.exception.SubwayNotFoundException;
 import com.example.service_subway.core.model.Coordinate;
 import com.example.service_subway.core.model.SubwayResponse;
 import com.example.service_subway.core.plugins.LocationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 @Service
 @RequiredArgsConstructor
@@ -15,9 +19,14 @@ public class ApplicationFacadeService {
 
     public SubwayResponse getNearestSubwayStation(float latitude, float longitude, int radius) {
         var coordinate = new Coordinate(latitude, longitude);
-        var location = locationService.get(coordinate).orElseThrow();
+        var location = locationService.get(coordinate)
+                .orElseThrow(() -> new LocationNotFoundException(coordinate));
         var subways = subwayListService.list(location.city());
-        var subway = nearestSubwayStationService.get(subways, location, radius).orElseThrow();
+        if (CollectionUtils.isEmpty(subways)) {
+            throw new SubwayNotFoundException(location);
+        }
+        var subway = nearestSubwayStationService.get(subways, location, radius)
+                .orElseThrow(() -> new NearestSubwayNotFoundException(location, radius));
         return SubwayResponse.of(location, subway);
     }
 }
