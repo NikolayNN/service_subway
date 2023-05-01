@@ -4,7 +4,7 @@ import com.example.service_subway.core.model.Coordinate;
 import org.springframework.stereotype.Service;
 
 @Service
-public class DistanceCalculator {
+public class DistanceCalculatorService {
 
     private final static double AVERAGE_RADIUS_OF_EARTH_METERS = 6371000;
 

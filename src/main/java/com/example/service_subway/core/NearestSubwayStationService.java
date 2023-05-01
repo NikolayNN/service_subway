@@ -11,15 +11,15 @@ import java.util.Optional;
 
 @Service
 public class NearestSubwayStationService {
-    private final DistanceCalculator distanceCalculator;
+    private final DistanceCalculatorService distanceCalculatorService;
 
-    public NearestSubwayStationService(DistanceCalculator distanceCalculator) {
-        this.distanceCalculator = distanceCalculator;
+    public NearestSubwayStationService(DistanceCalculatorService distanceCalculatorService) {
+        this.distanceCalculatorService = distanceCalculatorService;
     }
 
     public Optional<Subway> get(List<Subway> subways, Location location, int searchRadiusMeters) {
         return subways.stream()
-                .map(subway -> new SimpleEntry<>(subway, distanceCalculator.calculate(subway.coordinate(), location.coordinate())))
+                .map(subway -> new SimpleEntry<>(subway, distanceCalculatorService.calculate(subway.coordinate(), location.coordinate())))
                 .filter(entry -> entry.getValue() <= searchRadiusMeters)
                 .min(Map.Entry.comparingByValue())
                 .map(Map.Entry::getKey);
