@@ -22,7 +22,7 @@ public class NearestSubwayStationService {
         this.searchRadiusMeters = searchRadiusMeters;
     }
 
-    public Optional<Subway> getNearest(List<Subway> subways, Location location) {
+    public Optional<Subway> get(List<Subway> subways, Location location) {
         return subways.stream()
                 .map(subway -> new SimpleEntry<>(subway, distanceCalculator.calculate(subway.coordinate(), location.coordinate())))
                 .filter(entry -> entry.getValue() <= searchRadiusMeters)
