@@ -1,9 +1,9 @@
 package com.example.service_subway.plugins.region;
 
-import com.example.service_subway.core.model.Coordinate;
 import com.example.service_subway.core.model.Region;
 import com.example.service_subway.core.plugins.RegionService;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.example.service_subway.plugins.region.mapper.NominatimRegionResponseMapper;
+import com.example.service_subway.plugins.region.model.NominatimRegionResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -19,12 +19,15 @@ import static org.apache.commons.lang3.StringUtils.isEmpty;
 public class NominatimRegionService implements RegionService {
 
     private final RestTemplate restTemplate;
+    private final NominatimRegionResponseMapper mapper;
 
     private final String BASE_URL;
 
     public NominatimRegionService(RestTemplate restTemplate,
-                                  @Value("${app.plugin.region.nominatim.base-url}") String baseUrl) {
+                                  NominatimRegionResponseMapper mapper,
+                                  @Value("${app.plugin.city.nominatim.base-url}") String baseUrl) {
         this.restTemplate = restTemplate;
+        this.mapper = mapper;
         BASE_URL = baseUrl;
     }
 
@@ -35,7 +38,7 @@ public class NominatimRegionService implements RegionService {
         }
         URI uri = buildUri(name);
         var response = restTemplate.getForObject(uri, NominatimRegionResponse[].class);
-        return buildRegion(response);
+        return buildCity(response);
     }
 
     private URI buildUri(String name) {
@@ -49,24 +52,9 @@ public class NominatimRegionService implements RegionService {
                 .toUri();
     }
 
-    private Optional<Region> buildRegion(NominatimRegionResponse[] response) {
+    private Optional<Region> buildCity(NominatimRegionResponse[] response) {
         return Arrays.stream(response)
                 .findFirst()
-                .map(this::mapRegion);
-    }
-
-    private Region mapRegion(NominatimRegionResponse response) {
-        return new Region(
-                response.displayName(),
-                this.mapBoundingBox(response.boundingbox()));
-    }
-
-    public Region.BoundingBox mapBoundingBox(float[] bbox) {
-        return new Region.BoundingBox(new Coordinate(bbox[0], bbox[2]), new Coordinate(bbox[1], bbox[3]));
-    }
-
-    private record NominatimRegionResponse(
-            @JsonProperty("display_name") String displayName,
-            float[] boundingbox) {
+                .map(mapper::map);
     }
 }
