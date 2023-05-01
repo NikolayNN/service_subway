@@ -1,6 +1,7 @@
 server:
+  port: 8888
   servlet:
-    context-path: subway_service
+    context-path: /subway_service
 
 spring:
   application:
