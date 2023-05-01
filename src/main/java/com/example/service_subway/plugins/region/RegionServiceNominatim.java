@@ -16,14 +16,14 @@ import java.util.Optional;
 import static org.apache.commons.lang3.StringUtils.isEmpty;
 
 @Service
-public class NominatimRegionService implements RegionService {
+public class RegionServiceNominatim implements RegionService {
 
     private final RestTemplate restTemplate;
     private final NominatimRegionResponseMapper mapper;
 
     private final String BASE_URL;
 
-    public NominatimRegionService(RestTemplate restTemplate,
+    public RegionServiceNominatim(RestTemplate restTemplate,
                                   NominatimRegionResponseMapper mapper,
                                   @Value("${app.plugin.city.nominatim.base-url}") String baseUrl) {
         this.restTemplate = restTemplate;

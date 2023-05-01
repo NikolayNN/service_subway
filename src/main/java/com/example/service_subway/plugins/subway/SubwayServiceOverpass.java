@@ -14,14 +14,14 @@ import java.net.URI;
 import java.util.List;
 
 @Service
-public class OverpassSubwayService implements SubwayService {
+public class SubwayServiceOverpass implements SubwayService {
 
     private final RestTemplate restTemplate;
     private final OverpassSubwayResponseMapper mapper;
 
     private final String BASE_URL;
 
-    public OverpassSubwayService(RestTemplate restTemplate,
+    public SubwayServiceOverpass(RestTemplate restTemplate,
                                  OverpassSubwayResponseMapper mapper,
                                  @Value("${app.plugin.subway.overpass.base-url}") String baseUrl) {
         this.restTemplate = restTemplate;
