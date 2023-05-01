@@ -18,7 +18,8 @@ public class CitySubwayListService {
 
     @Cacheable(value = "subways")
     public List<Subway> list(String cityName) {
-        Region region = regionService.getByName(cityName).orElseThrow();
-        return subwayService.listByCity(region);
+        return regionService.getByName(cityName)
+                .map(subwayService::listByCity)
+                .orElse(List.of());
     }
 }
