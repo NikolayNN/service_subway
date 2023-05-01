@@ -2,6 +2,8 @@ package com.example.service_subway.core.api;
 
 import com.example.service_subway.core.ApplicationFacadeService;
 import com.example.service_subway.core.model.SubwayResponse;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,9 +19,11 @@ public class NearestSubwayController {
     private final ApplicationFacadeService service;
 
     @GetMapping
-    public ResponseEntity<SubwayResponse> getStationsByCity(@RequestParam float latitude,
-                                                            @RequestParam float longitude,
-                                                            @RequestParam int radius) {
+    @Operation(description = "get nearest subway station by coordinates in search radius")
+    public ResponseEntity<SubwayResponse> getNearest(@RequestParam float latitude,
+                                                     @RequestParam float longitude,
+                                                     @Parameter(description = "search radius in meters")
+                                                     @RequestParam(required = false, defaultValue = "1000") int radius) {
         var response = service.getNearestSubwayStation(latitude, longitude, radius);
         return ResponseEntity.ok(response);
     }
