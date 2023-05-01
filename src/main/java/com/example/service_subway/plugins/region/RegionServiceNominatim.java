@@ -36,9 +36,14 @@ public class RegionServiceNominatim implements RegionService {
         if (isEmpty(name)) {
             return Optional.empty();
         }
-        URI uri = buildUri(name);
-        var response = restTemplate.getForObject(uri, NominatimRegionResponse[].class);
-        return buildCity(response);
+        try {
+            URI uri = buildUri(name);
+            var response = restTemplate.getForObject(uri, NominatimRegionResponse[].class);
+            return buildRegion(response);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Optional.empty();
+        }
     }
 
     private URI buildUri(String name) {
@@ -52,7 +57,7 @@ public class RegionServiceNominatim implements RegionService {
                 .toUri();
     }
 
-    private Optional<Region> buildCity(NominatimRegionResponse[] response) {
+    private Optional<Region> buildRegion(NominatimRegionResponse[] response) {
         return Arrays.stream(response)
                 .findFirst()
                 .map(mapper::map);
