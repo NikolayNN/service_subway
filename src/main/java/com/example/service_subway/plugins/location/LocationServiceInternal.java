@@ -50,6 +50,6 @@ public class LocationServiceInternal implements LocationService {
                 .map(r -> new Location(coordinate, r.country(), r.city()));
     }
 
-    private record LocationResponse(String country, String city) {
+    public record LocationResponse(String country, String city) {
     }
 }
