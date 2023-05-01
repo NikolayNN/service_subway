@@ -1,8 +1,6 @@
 package com.example.service_subway.core;
 
 import com.example.service_subway.core.model.Coordinate;
-import com.example.service_subway.factory.CoordinateFactory;
-import org.checkerframework.checker.units.qual.C;
 import org.junit.jupiter.api.Test;
 
 import static com.example.service_subway.factory.CoordinateFactory.coordinate;
