@@ -17,8 +17,10 @@ public class NearestSubwayController {
     private final ApplicationFacadeService service;
 
     @GetMapping
-    public ResponseEntity<SubwayResponse> getStationsByCity(@RequestParam float latitude, @RequestParam float longitude) {
-        var response = service.getNearestSubwayStation(latitude, longitude);
+    public ResponseEntity<SubwayResponse> getStationsByCity(@RequestParam float latitude,
+                                                            @RequestParam float longitude,
+                                                            @RequestParam int radius) {
+        var response = service.getNearestSubwayStation(latitude, longitude, radius);
         return ResponseEntity.ok(response);
     }
 }

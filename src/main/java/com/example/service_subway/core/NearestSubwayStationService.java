@@ -2,7 +2,6 @@ package com.example.service_subway.core;
 
 import com.example.service_subway.core.model.Location;
 import com.example.service_subway.core.model.Subway;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.AbstractMap.SimpleEntry;
@@ -12,17 +11,13 @@ import java.util.Optional;
 
 @Service
 public class NearestSubwayStationService {
-
-    private final int searchRadiusMeters;
     private final DistanceCalculator distanceCalculator;
 
-    public NearestSubwayStationService(DistanceCalculator distanceCalculator,
-                                       @Value("${app.search-radius-meters}") int searchRadiusMeters) {
+    public NearestSubwayStationService(DistanceCalculator distanceCalculator) {
         this.distanceCalculator = distanceCalculator;
-        this.searchRadiusMeters = searchRadiusMeters;
     }
 
-    public Optional<Subway> get(List<Subway> subways, Location location) {
+    public Optional<Subway> get(List<Subway> subways, Location location, int searchRadiusMeters) {
         return subways.stream()
                 .map(subway -> new SimpleEntry<>(subway, distanceCalculator.calculate(subway.coordinate(), location.coordinate())))
                 .filter(entry -> entry.getValue() <= searchRadiusMeters)

@@ -13,11 +13,11 @@ public class ApplicationFacadeService {
     private final CitySubwayListService subwayListService;
     private final NearestSubwayStationService nearestSubwayStationService;
 
-    public SubwayResponse getNearestSubwayStation(float latitude, float longitude) {
+    public SubwayResponse getNearestSubwayStation(float latitude, float longitude, int radius) {
         var coordinate = new Coordinate(latitude, longitude);
         var location = locationService.get(coordinate).orElseThrow();
         var subways = subwayListService.list(location.city());
-        var subway = nearestSubwayStationService.get(subways, location).orElseThrow();
+        var subway = nearestSubwayStationService.get(subways, location, radius).orElseThrow();
         return SubwayResponse.of(location, subway);
     }
 }
