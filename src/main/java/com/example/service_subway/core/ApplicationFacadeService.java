@@ -10,6 +10,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+/**
+ * Provides a facade for retrieving the nearest subway station based on a given location
+ */
 @Service
 @RequiredArgsConstructor
 public class ApplicationFacadeService {

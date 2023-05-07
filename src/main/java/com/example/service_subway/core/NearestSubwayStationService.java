@@ -37,9 +37,17 @@ public class NearestSubwayStationService {
     }
 
 
+    /**
+     * The TempSubway class represents a model that includes a subway station and the distance from that station
+     * to the user's current position.
+     */
     @AllArgsConstructor
     private static class TempSubway {
         private Subway subway;
+
+        /**
+         * Distance in meters
+         */
         private double distance;
 
         public Optional<Subway> subway() {
