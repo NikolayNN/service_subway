@@ -1,0 +1,30 @@
+stages:
+  - build
+  - test
+  - package
+  - deploy
+
+build:
+  stage: build
+  script:
+    - ./gradlew build
+
+test:
+  stage: test
+  script:
+    - ./gradlew test
+
+package:
+  stage: package
+  script:
+    - ./gradlew assemble
+  artifacts:
+    paths:
+      - build/libs/*.jar
+
+deploy:
+  stage: deploy
+  script:
+    - docker login -u $DOCKER_HUB_USERNAME --password-stdin $DOCKER_HUB_ACCESS_TOKEN
+    - docker build -t $DOCKER_HUB_REPO:latest .
+    - docker push $DOCKER_HUB_REPO:latest
